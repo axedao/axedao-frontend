@@ -1,0 +1,88 @@
+@import "styles/_mixins.scss";
+
+#axe-pro {
+  padding-top: rem(100);
+  overflow: hidden;
+  .card {
+    width: 100%;
+    height: rem(952);
+    background-image: url("./axe-pro-card.png");
+    background-size: 100% 100%;
+    padding: rem(47) rem(57);
+    position: relative;
+    &-wrapper {
+      position: relative;
+      z-index: 2;
+
+      h2 {
+        font-weight: 600;
+        font-size: rem(48);
+        line-height: rem(48);
+        margin-bottom: rem(40);
+      }
+      p {
+        font-weight: normal;
+        font-size: rem(24);
+        line-height: rem(40);
+        margin-bottom: rem(40);
+        max-width: rem(872);
+        opacity: 0.9;
+      }
+    }
+    .axe-pro-img {
+      position: absolute;
+      z-index: 2;
+      right: rem(80);
+      bottom: rem(60);
+      width: rem(600);
+    }
+
+    &::after {
+      content: "";
+      height: rem(1196);
+      width: rem(1196);
+      background-image: url("./axe-pro-bg.png");
+      background-size: 100% 100%;
+      position: absolute;
+      top: rem(130);
+      left: rem(-328);
+      z-index: 1;
+    }
+  }
+}
+
+@include mobile {
+  #axe-pro {
+    padding-top: rem(80);
+    .card-wrapper {
+      text-align: center;
+      h2 {
+        font-size: rem(28);
+        line-height: rem(32);
+        margin-bottom: rem(20);
+      }
+      p {
+        font-size: rem(16);
+        line-height: rem(30);
+      }
+    }
+    .card {
+      padding: rem(16);
+      display: flex;
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+      background-size: cover;
+      background-position: center center;
+      border-radius: rem(20);
+      .axe-pro-img {
+        position: relative;
+        width: 80%;
+        padding-top: rem(150);
+        margin: auto;
+        right: auto;
+      }
+    }
+  }
+}

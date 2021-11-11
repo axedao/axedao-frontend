@@ -1,0 +1,422 @@
+@import "../assets/styles/fonts.scss";
+@import "styles/_colors.scss";
+@import "styles/_mixins.scss";
+
+* {
+  outline: none;
+  box-sizing: border-box;
+}
+:root {
+  --vs-primary-gradient: linear-gradient(94.45deg, #69156b -10.22%, #ef003f 40.64%, #ffa252 99.61%);
+}
+
+html,
+body,
+#root {
+  // font-family: 'Gilroy';
+  // font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  // overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-flow: column;
+  flex-direction: column;
+  z-index: 1;
+  background-size: cover;
+  font-family: "Gilroy";
+  font-weight: bold;
+  overflow: hidden;
+  // transform: translate3d(0, 0, 0);
+  // -webkit-transform: translate3d(0, 0, 0);
+  background-image: url("../assets/images/app-bg.png");
+
+  &.mobile {
+    .header-container {
+      padding: 0 12px !important;
+    }
+  }
+}
+.MuiTab-textColorPrimary {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-left: 20px !important;
+  margin-right: 20px !important;
+}
+
+.container {
+  max-width: rem(1920);
+  margin: auto;
+  padding: 0 rem(24);
+}
+.h-center {
+  display: flex;
+  align-items: center;
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mark-gradient-text {
+  background-image: var(--vs-primary-gradient);
+  background-size: 100% 100%;
+  background-clip: text;
+  color: transparent;
+}
+
+.btn {
+  appearance: none;
+  min-height: rem(60);
+  padding: 0 rem(52);
+  font-size: rem(24);
+  font-weight: bold;
+  text-align: center;
+  color: #fff;
+  border-radius: rem(32);
+  border: none;
+  outline: none;
+  box-shadow: 0px rem(4) rem(4) rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  text-shadow: 2px 1px 4px rgba(0, 0, 0, 0.25);
+
+  &-gradi {
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+    &::before {
+      content: "";
+      background: var(--vs-primary-gradient);
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+      border-radius: rem(32);
+      box-shadow: inset rem(-1) rem(2) rem(4) rgba(0, 0, 0, 0.25);
+    }
+    &::after {
+      content: "";
+      background: var(--vs-primary-gradient);
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      height: 100%;
+      left: rem(11);
+      width: calc(100% - #{rem(22)});
+      border-radius: rem(32);
+      box-shadow: 0px rem(4) rem(4) rgba(0, 0, 0, 0.25);
+    }
+  }
+  &-white {
+    position: relative;
+    background-color: transparent;
+    z-index: 1;
+    color: #000;
+    & > * {
+      position: relative;
+      z-index: 1;
+    }
+    &::before {
+      content: "";
+      background: #fff;
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.7;
+      border-radius: rem(32);
+      box-shadow: inset rem(-1) rem(2) rem(4) rgba(0, 0, 0, 0.25);
+    }
+    &::after {
+      content: "";
+      background: #fff;
+      position: absolute;
+      z-index: 0;
+      top: 0;
+      height: 100%;
+      left: rem(11);
+      width: calc(100% - #{rem(22)});
+      border-radius: rem(32);
+      box-shadow: 0px rem(4) rem(4) rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  &-icon {
+    padding: 0 rem(40);
+    background: transparent;
+  }
+
+  &:disabled {
+    filter: grayscale(2);
+    opacity: 0.6;
+  }
+}
+
+html {
+  font-size: 80%;
+}
+
+@media (max-width: 1440px) {
+  html {
+    font-size: 75%;
+  }
+}
+
+@media (max-width: 1124px) {
+  html {
+    font-size: 60%;
+  }
+}
+
+.mobile {
+  display: none;
+}
+@include mobile {
+  html {
+    font-size: 80%;
+  }
+  .mobile {
+    display: block;
+  }
+  .pc {
+    display: none;
+  }
+
+  .btn {
+    min-height: rem(46);
+    padding: 0 rem(32);
+    font-size: rem(16);
+  }
+}
+.MuiDrawer-paperAnchorDockedLeft {
+  border-right: 0 !important;
+}
+
+.ohm-card {
+  .card-header {
+    width: 100%;
+    min-height: 2rem;
+    h5 {
+      font-weight: 600 !important;
+    }
+  }
+  .card-content {
+    width: 100%;
+    position: relative;
+    align-items: left;
+    justify-content: center;
+    flex-flow: column;
+    height: 100%;
+  }
+
+  .help-text {
+    margin: 10px 0px;
+  }
+
+  .data-row {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin: 12px 0px;
+  }
+}
+
+.ohm-pairs {
+  display: flex;
+  align-items: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield !important;
+}
+
+a:hover svg {
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+.app-otter-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $otter-blue;
+  color: white;
+  padding: 15px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 18px;
+
+  &:hover {
+    background: $otter-blue-hover;
+  }
+}
+
+.web3modal-modal-lightbox {
+  z-index: 10001 !important;
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(100px) !important;
+
+  .web3modal-modal-card {
+    // background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(100px);
+    border-radius: 10px;
+
+    .web3modal-provider-wrapper {
+      // border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 0;
+      padding: 0;
+
+      .web3modal-provider-container {
+        background-color: rgb(0, 0, 0, 0);
+        border-radius: 0;
+
+        &:hover {
+          background-color: rgb(0, 0, 0, 0.2);
+        }
+
+        .web3modal-provider-name {
+          font-weight: 600;
+          font-size: 24px;
+          text-align: center;
+        }
+
+        .web3modal-provider-description {
+          font-weight: 300;
+          font-size: 14px;
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+.walletconnect-qrcode__base {
+  background: rgba(0, 0, 0, 0.2) !important;
+  backdrop-filter: blur(100px) !important;
+
+  .walletconnect-modal__base {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(100px);
+    border-radius: 10px;
+    padding: 30px 20px 20px 20px;
+
+    .walletconnect-modal__header {
+      .walletconnect-modal__headerLogo {
+        display: none;
+      }
+
+      p {
+        margin-left: 24px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      .walletconnect-modal__close__wrapper {
+        background: none;
+        right: 23px;
+
+        .walletconnect-modal__close__icon {
+          .walletconnect-modal__close__line1 {
+            border: 1px solid rgb(255, 255, 255);
+          }
+          .walletconnect-modal__close__line2 {
+            border: 1px solid rgb(255, 255, 255);
+          }
+        }
+      }
+    }
+
+    .walletconnect-modal__mobile__toggle {
+      margin-bottom: 20px;
+      background: none;
+      width: 60%;
+
+      .walletconnect-modal__mobile__toggle_selector {
+        height: 1px;
+        top: 34px;
+      }
+
+      a {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        cursor: pointer;
+      }
+    }
+
+    .walletconnect-modal__mobile__toggle.right__selected {
+      a {
+        &:nth-child(2) {
+          // color: rgba(255, 255, 255, 0.6);
+        }
+
+        &:last-child {
+          // color: #ffffff;
+        }
+      }
+    }
+
+    .walletconnect-qrcode__text {
+      font-style: normal;
+      font-weight: 300;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .walletconnect-qrcode__image {
+      background: #ffffff;
+      border-radius: 10px;
+      padding: 13px;
+    }
+
+    .walletconnect-modal__footer {
+      font-weight: 300;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    .walletconnect-modal__base__row {
+      h3 {
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+  }
+}

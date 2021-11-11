@@ -1,0 +1,9 @@
+@import "styles/_colors.scss";
+@import "styles/_mixins.scss";
+
+.landing-page {
+  background-color: #000;
+  .section-wrapper {
+    padding-left: rem(300);
+  }
+}

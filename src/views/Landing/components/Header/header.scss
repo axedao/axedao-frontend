@@ -1,0 +1,119 @@
+@import "styles/_mixins.scss";
+
+.header {
+  padding: rem(29) 0;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0) 100%);
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .logo {
+      display: flex;
+      align-items: center;
+      img {
+        height: rem(55);
+      }
+    }
+
+    ul {
+      position: absolute;
+      z-index: 3;
+      left: 0;
+      top: 100%;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      margin-top: rem(40);
+      width: rem(300);
+
+      li {
+        a {
+          display: block;
+          font-weight: 500;
+          font-size: rem(32);
+          line-height: rem(32);
+          color: #fff;
+          padding: rem(24);
+        }
+      }
+    }
+  }
+}
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  z-index: 3;
+  left: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  transition: width 0s, height 0s, opacity 0.4s;
+}
+.scrolled {
+  // background-color: #000;
+  // box-shadow: rem(0) rem(1) rem(0) #000;
+}
+
+@include mobile {
+  .landing-page {
+    .header {
+      background: #000;
+      padding: rem(8) 0;
+
+      &__wrapper {
+        padding-right: 0;
+      }
+
+      .menu-btn {
+        padding: 0 rem(16);
+      }
+
+      .logo {
+        img {
+          height: rem(32);
+        }
+      }
+
+      .menu {
+        background: #000;
+        height: 100vh;
+        margin: 0;
+        right: rem(-300);
+        top: 0;
+        left: auto;
+        box-shadow: rem(-4) rem(4) rem(4) rgba(0, 0, 0, 0.25);
+        transition: all 0.4s;
+
+        li {
+          a {
+            font-size: rem(20);
+            line-height: rem(24);
+            padding: rem(16) rem(24);
+          }
+        }
+      }
+
+      &.show-menu {
+        .menu {
+          right: 0;
+        }
+        .menu-overlay {
+          width: 100vh;
+          height: 100vh;
+          opacity: 1;
+        }
+      }
+    }
+    .section-wrapper {
+      padding-left: rem(0);
+    }
+  }
+}

@@ -1,0 +1,119 @@
+@import "styles/_mixins.scss";
+#claim {
+  .claim-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+  }
+  .claim-title {
+    margin-top: rem(140);
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: rem(64);
+    line-height: rem(72);
+  }
+  .claim-desc {
+    font-size: rem(32);
+    line-height: rem(48);
+    max-width: rem(1123);
+    margin-top: 0;
+  }
+  .claim-card {
+    background-color: #1f1f1f;
+    display: flex;
+    border-radius: rem(30);
+    padding: rem(50) rem(25);
+    flex-direction: column;
+    margin-top: rem(64);
+    color: #fff;
+    margin-bottom: rem(80);
+  }
+
+  .claim-raised {
+    h1 {
+      font-size: 24px;
+      font-family: "Gilroy";
+      font-weight: 400;
+      margin: 0;
+    }
+    h2 {
+      font-size: 48px;
+      font-family: "Gilroy";
+      font-weight: 700;
+      margin: 0;
+      display: inline-block;
+    }
+  }
+
+  .claim-connect-card {
+    .soldOut {
+      text-align: center;
+      font-size: rem(48);
+      padding: rem(40) 0;
+    }
+
+    .soldOutContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  }
+  .claimButton {
+    display: flex;
+    flex-direction: column;
+    margin-top: 16px;
+    p {
+      margin-top: 8px;
+    }
+  }
+  .notConnectedBox {
+    margin: 40px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    .title {
+      font-size: 16px;
+      font-family: "Gilroy";
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  .btn-gradi {
+    span {
+      color: #fff;
+    }
+  }
+  .claim-raised {
+    text-align: center;
+  }
+
+  .walletIcon {
+    display: block;
+    position: absolute;
+    right: rem(100);
+    bottom: rem(-80);
+    width: rem(400);
+  }
+}
+
+@include mobile {
+  #claim {
+    .walletIcon {
+      display: block;
+      position: relative;
+      right: 0;
+      bottom: rem(-80);
+      width: rem(200);
+    }
+  }
+}

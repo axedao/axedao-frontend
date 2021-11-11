@@ -1,0 +1,18 @@
+<svg width="1428" height="405" viewBox="0 0 1428 405" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <path d="M0 374.91C722.023 542.758 569.596 -48.7086 1428 3.24532" stroke="#A3A3A3" stroke-opacity="0.7" stroke-width="3"/>
+  <path d="M1342 -8.66026L1333.34 -7.57103e-07L1342 8.66026L1350.66 7.57103e-07L1342 -8.66026ZM1340.5 -1.31134e-07L1340.5 114L1343.5 114L1343.5 1.31134e-07L1340.5 -1.31134e-07Z" fill="#A3A3A3" fill-opacity="0.7"/>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Poppins, sans-serif" font-size="32" font-weight="bold" letter-spacing="0em" text-anchor="start">
+    <tspan x="1154" y="209.2">$300,000,000</tspan>
+  </text>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Poppins, sans-serif" font-size="24" letter-spacing="0em">
+    <tspan x="1244" y="162.4">JAN 2022</tspan>
+  </text>
+  <path d="M92 401.66L100.66 393L92 384.34L83.3397 393L92 401.66ZM93.5 393V279H90.5V393H93.5Z" fill="#A3A3A3" fill-opacity="0.7"/>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Poppins, sans-serif" font-size="32" font-weight="bold" letter-spacing="0em">
+    <tspan x="92" y="239.2">$1,000,000</tspan>
+  </text>
+  <text fill="white" xml:space="preserve" style="white-space: pre" font-family="Poppins, sans-serif" font-size="24" letter-spacing="0em">
+    <tspan x="92" y="192.4">NOV 2021</tspan>
+  </text>
+</svg>

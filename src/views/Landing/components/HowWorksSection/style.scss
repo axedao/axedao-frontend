@@ -1,0 +1,114 @@
+@import "styles/_mixins.scss";
+
+#how-works {
+  padding-top: rem(180);
+  padding-bottom: rem(245);
+  position: relative;
+  overflow: hidden;
+
+  .section-wrapper {
+    position: relative;
+    z-index: 2;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: rem(64);
+    line-height: rem(80);
+    margin-bottom: rem(29);
+    background-image: var(--vs-primary-gradient);
+    background-size: 100% 100%;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    margin-top: 0;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    max-width: rem(950);
+    li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      div {
+        h3 {
+          font-weight: 600;
+          font-size: rem(40);
+          line-height: rem(48);
+          margin-bottom: rem(24);
+          margin-top: 0;
+        }
+        p {
+          font-weight: normal;
+          font-size: rem(24);
+          line-height: rem(40);
+          max-width: rem(456);
+          opacity: 0.9;
+        }
+      }
+
+      img {
+        height: rem(325);
+      }
+    }
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: rem(-100);
+    right: rem(-330);
+    width: rem(1392);
+    height: rem(1392);
+    background-image: url("./how-works-bg.png");
+    opacity: 0.8;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    bottom: rem(0);
+    left: 0;
+    width: 100%;
+    height: rem(400);
+    background-image: url("./how-works-bottom.png");
+    background-size: 100% 100%;
+  }
+}
+
+@include mobile {
+  #how-works {
+    padding-top: rem(80);
+    padding-bottom: rem(80);
+
+    h2 {
+      font-size: rem(30);
+      line-height: rem(35);
+      margin-top: 0;
+      margin-bottom: rem(12);
+    }
+    ul {
+      li {
+        div {
+          h3 {
+            font-size: rem(20);
+            line-height: rem(20);
+            margin-bottom: rem(8);
+          }
+          p {
+            font-size: rem(16);
+            line-height: rem(19);
+          }
+        }
+        img {
+          width: rem(120);
+          height: rem(120);
+        }
+      }
+    }
+  }
+}

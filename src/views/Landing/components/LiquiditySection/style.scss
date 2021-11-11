@@ -1,0 +1,139 @@
+@import "styles/_mixins.scss";
+
+#liquidity {
+  margin-top: rem(20);
+
+  .card {
+    padding-top: rem(140);
+    padding-bottom: rem(140);
+    background: #3a3a3a;
+    .section-wrapper {
+      display: flex;
+      position: relative;
+
+      .hand-glass {
+        position: absolute;
+        z-index: 0;
+        top: rem(-210);
+        right: rem(70);
+        width: rem(300);
+      }
+
+      .left {
+        position: relative;
+        z-index: 1;
+        width: rem(630);
+        margin-right: rem(224);
+        h4 {
+          font-weight: 600;
+          font-size: rem(48);
+          line-height: rem(48);
+          margin-bottom: rem(40);
+          margin-top: 0;
+        }
+        p {
+          font-size: rem(24);
+          line-height: rem(40);
+          font-weight: normal;
+
+          &.gray {
+            margin-bottom: rem(40);
+            color: #bcbcbc;
+          }
+        }
+      }
+
+      .right {
+        position: relative;
+        z-index: 1;
+        ul {
+          list-style: none;
+          padding: 0;
+          li {
+            margin-bottom: rem(72);
+
+            &:last-child {
+              margin: 0;
+            }
+            h3 {
+              background-image: var(--vs-primary-gradient);
+              background-clip: text;
+              color: transparent;
+              display: inline-block;
+              font-weight: bold;
+              font-size: rem(48);
+              line-height: rem(48);
+              margin-bottom: rem(24);
+              margin-top: 0;
+            }
+            p {
+              font-weight: normal;
+              font-size: rem(32);
+              line-height: rem(32);
+              margin: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  #liquidity {
+    .card {
+      padding-top: rem(80);
+      padding-bottom: rem(80);
+      .container {
+        .section-wrapper {
+          flex-direction: column;
+
+          .hand-glass {
+            position: relative;
+            top: 0;
+            left: auto;
+            right: auto;
+            display: inline-block;
+            margin: auto;
+            width: rem(200);
+          }
+
+          .left {
+            margin-right: 0;
+            padding-top: rem(20);
+            margin-bottom: rem(20);
+            width: 100%;
+
+            h4 {
+              font-size: rem(20);
+              line-height: rem(24);
+              margin-bottom: rem(8);
+              margin-top: 0;
+            }
+            p {
+              font-size: rem(16);
+              line-height: rem(19);
+              margin-bottom: rem(16);
+            }
+          }
+          .right {
+            ul {
+              li {
+                margin-bottom: rem(20);
+                h3 {
+                  font-size: rem(30);
+                  line-height: rem(34);
+                  margin-bottom: rem(8);
+                }
+                p {
+                  font-size: rem(18);
+                  line-height: rem(22);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

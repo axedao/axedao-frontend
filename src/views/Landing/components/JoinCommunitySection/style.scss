@@ -1,0 +1,193 @@
+@import "styles/_mixins.scss";
+
+#join {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: rem(474);
+    background-image: url("./join-bg.png");
+    background-size: 100% 100%;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    padding-top: rem(100);
+    padding-bottom: rem(194);
+    .section-wrapper {
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      & > ul {
+        display: flex;
+        .left {
+          margin-right: rem(77);
+          h2 {
+            font-weight: 600;
+            font-size: rem(64);
+            line-height: rem(80);
+            margin-bottom: rem(48);
+            margin-top: 0;
+            background-image: var(--vs-primary-gradient);
+            background-size: 100% 100%;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+          }
+          .socials {
+            display: flex;
+            margin-bottom: rem(130);
+
+            a {
+              display: block;
+              margin-right: rem(64);
+            }
+
+            img {
+              width: rem(40);
+            }
+          }
+
+          .menu {
+            display: flex;
+            & > li {
+              &:first-child {
+                margin-right: rem(200);
+              }
+              ul {
+                li {
+                  padding: rem(16) 0;
+                  &:first-child {
+                    padding: 0;
+                  }
+                  h3 {
+                    font-weight: 500;
+                    font-size: rem(32);
+                    line-height: rem(32);
+                    margin-bottom: rem(16);
+                    margin-top: 0;
+                  }
+                  a {
+                    font-weight: normal;
+                    font-size: rem(24);
+                    line-height: rem(24);
+                    color: #fff;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .right {
+          img {
+            height: rem(250);
+            margin-bottom: rem(14);
+          }
+
+          h3 {
+            font-weight: 500;
+            font-size: rem(32);
+            line-height: rem(32);
+            margin-bottom: rem(16);
+          }
+          p {
+            font-weight: normal;
+            font-size: rem(24);
+            line-height: rem(32);
+            margin-bottom: rem(60);
+            opacity: 0.9;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include mobile {
+  #join {
+    .container {
+      padding-top: rem(80);
+      padding-bottom: rem(60);
+      .section-wrapper {
+        & > ul {
+          margin: 0;
+          flex-direction: column;
+          & > li {
+            &.left {
+              margin-right: 0;
+              margin-bottom: rem(40);
+              h2 {
+                font-size: rem(30);
+                text-align: center;
+                line-height: rem(35);
+                margin-bottom: rem(40);
+                margin-top: 0;
+              }
+              .socials {
+                margin-bottom: rem(26);
+                li {
+                  a {
+                    margin-right: rem(34);
+                    img {
+                      width: rem(32);
+                    }
+                  }
+                }
+              }
+              .menu {
+                justify-content: space-between;
+                li {
+                  &:first-child {
+                    margin-right: 0;
+                  }
+
+                  h3 {
+                    margin-top: 0;
+                    margin-bottom: 0 !important;
+                    font-size: rem(20) !important;
+                  }
+
+                  li {
+                    padding: rem(8) 0;
+                    a {
+                      font-size: rem(16) !important;
+                    }
+                  }
+                }
+              }
+            }
+
+            &.right {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              img {
+                margin: auto;
+              }
+
+              h3 {
+                margin-top: 0;
+                margin-bottom: rem(16);
+                font-size: rem(24);
+              }
+              p {
+                font-size: rem(16);
+                line-height: rem(20);
+                margin-bottom: rem(24);
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
