@@ -4,7 +4,7 @@ import styles from '../../ido.module.scss';
 import happyOtter from '../../images/otter_happy.png';
 import { BigNumber, ethers } from 'ethers';
 import { useCallback, useEffect, useMemo, useReducer, useState } from 'react';
-import { IDOContract, USDCContract, StakingContract } from 'src/abi';
+import { IDOContract, DAIContract, StakingContract } from 'src/abi';
 import { useWeb3Context } from 'src/hooks';
 import { getAddresses } from 'src/constants';
 import { MediumLink } from 'src/constants';
@@ -17,11 +17,11 @@ interface State {
   txPending: boolean;
   connected: boolean;
   finalized: boolean;
-  walletUsdcBalance?: string;
-  walletUSDCAllowance?: string;
+  walletDaiBalance?: string;
+  walletDAIAllowance?: string;
   whitelisted: boolean;
   allotment?: string;
-  idoUSDCAmount?: string;
+  idoDAIAmount?: string;
   purchasedAmount?: string;
   stakingAmount?: string;
   error?: Error;
@@ -30,11 +30,11 @@ interface State {
 export type Action =
   | {
       type: 'load-details-complete';
-      walletUsdcBalance: string;
-      walletUSDCAllowance: string;
+      walletDaiBalance: string;
+      walletDAIAllowance: string;
       whitelisted: boolean;
       allotment: string;
-      idoUSDCAmount: string;
+      idoDAIAmount: string;
       purchasedAmount: string;
       connected: boolean;
       stakingAmount: string;
@@ -45,7 +45,7 @@ export type Action =
     }
   | {
       type: 'approved';
-      walletUSDCAllowance: string;
+      walletDAIAllowance: string;
     }
   | {
       type: 'purchasing';
@@ -78,7 +78,7 @@ function reducer(state: State, action: Action): State {
       return {
         ...state,
         txPending: false,
-        walletUSDCAllowance: action.walletUSDCAllowance,
+        walletDAIAllowance: action.walletDAIAllowance,
       };
     }
     case 'purchasing': {
@@ -104,15 +104,15 @@ export default function ClaimSection() {
     finalized: false,
   });
 
-  const usdc = new ethers.Contract(addresses.USDC_ADDRESS, USDCContract, provider);
+  const dai = new ethers.Contract(addresses.DAI_ADDRESS, DAIContract, provider);
   const ido = new ethers.Contract(addresses.IDO, IDOContract, provider);
   const staking = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
 
   const loadDetails = useCallback(async () => {
-    const idoUSDCAmount = ethers.utils.formatEther(await usdc.balanceOf(ido.address));
-    let walletUsdcBalance = connected ? await usdc.balanceOf(wallet) : BigNumber.from(0);
-    walletUsdcBalance = walletUsdcBalance.lt('1000000000') ? '0' : ethers.utils.formatEther(walletUsdcBalance);
-    const walletUSDCAllowance = connected ? ethers.utils.formatEther(await usdc.allowance(wallet, ido.address)) : '0';
+    const idoDAIAmount = ethers.utils.formatEther(await dai.balanceOf(ido.address));
+    let walletDaiBalance = connected ? await dai.balanceOf(wallet) : BigNumber.from(0);
+    walletDaiBalance = walletDaiBalance.lt('1000000000') ? '0' : ethers.utils.formatEther(walletDaiBalance);
+    const walletDAIAllowance = connected ? ethers.utils.formatEther(await dai.allowance(wallet, ido.address)) : '0';
     const whiteListEnabled = await ido.whiteListEnabled();
     const whitelisted = connected ? !whiteListEnabled || (await ido.whiteListed(wallet)) : false;
     let allotment = '0';
@@ -126,11 +126,11 @@ export default function ClaimSection() {
 
     dispatch({
       type: 'load-details-complete',
-      walletUsdcBalance,
-      walletUSDCAllowance,
+      walletDaiBalance,
+      walletDAIAllowance,
       whitelisted,
       allotment,
-      idoUSDCAmount,
+      idoDAIAmount,
       purchasedAmount,
       connected: Boolean(connected),
       stakingAmount,
@@ -206,9 +206,9 @@ export default function ClaimSection() {
             <div className={styles.tokenAmounts}>
               <p className={styles.tokenAmount}>
                 {Intl.NumberFormat('en').format(Number(state.purchasedAmount || 0) * 5)}
-                <span className={styles.tokenTitle}>USDC</span>
+                <span className={styles.tokenTitle}>DAI</span>
               </p>
-              <p className={styles.tokenSubTitle}>85 USDC = 1 AXE</p>
+              <p className={styles.tokenSubTitle}>85 DAI = 1 AXE</p>
             </div>
           </div>
         )}
@@ -272,7 +272,7 @@ export default function ClaimSection() {
 
             <div className="claim-card">
              <div className="claim-raised">
-                <h1>Total Raised (USDC)</h1>
+                <h1>Total Raised (DAI)</h1>
                 <h2 className="mark-gradient-text">${Intl.NumberFormat('en').format(170000)}</h2>
             </div>
 

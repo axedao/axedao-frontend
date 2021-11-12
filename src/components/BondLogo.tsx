@@ -13,8 +13,8 @@ function BondHeader({ bond }: IBondHeaderProps) {
     else if (bond.indexOf('axe') >= 0) {
       return getTokenImage('axe');
     }
-    else if (bond.indexOf('usdc') >= 0) {
-      return getTokenImage('usdc');
+    else if (bond.indexOf('dai') >= 0) {
+      return getTokenImage('dai');
     }
   };
 

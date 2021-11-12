@@ -10,9 +10,9 @@ export default function LiquiditySection() {
   const pol = useSelector<IReduxState, number>(state => {
     return state.app.pol;
   });
-  const isBondLoading = useSelector<IReduxState, boolean>(state => !state.bonding['usdc_axe_lp']?.bondPrice ?? true);
+  const isBondLoading = useSelector<IReduxState, boolean>(state => !state.bonding['dai_axe_lp']?.bondPrice ?? true);
   const bondPurchased = useSelector<IReduxState, number>(state => {
-    return state.bonding['usdc_axe_lp'] && state.bonding['usdc_axe_lp'].purchased;
+    return state.bonding['dai_axe_lp'] && state.bonding['dai_axe_lp'].purchased;
   });
 
   return (

@@ -1,10 +1,10 @@
 import { SvgIcon } from '@material-ui/core';
-import { ReactComponent as USDC } from '../assets/tokens/USDC.svg';
+import { ReactComponent as DAI } from '../assets/tokens/DAI.svg';
 import { ReactComponent as AXE } from '../assets/tokens/AXE.svg';
 import { ReactComponent as StakedAxe } from '../assets/tokens/sAXE.svg';
 
-function getUSDCTokenImage() {
-  return <SvgIcon component={USDC} viewBox="0 0 2000 2000" style={{ height: '32px', width: '32px' }} />;
+function getDAITokenImage() {
+  return <SvgIcon component={DAI} viewBox="0 0 32 32" style={{ height: '32px', width: '32px' }} />;
 }
 
 function getAXETokenImage() {
@@ -15,8 +15,8 @@ function getStakedAXETokenImage() {
   return <SvgIcon component={StakedAxe} viewBox="0 0 734 734" style={{ height: '32px', width: '32px' }} />;
 }
 
-export function getTokenImage(name: 'axe' | 'usdc' | 'saxe'): JSX.Element {
-  if (name === 'usdc') return getUSDCTokenImage();
+export function getTokenImage(name: 'axe' | 'dai' | 'saxe'): JSX.Element {
+  if (name === 'dai') return getDAITokenImage();
   if (name === 'axe') return getAXETokenImage();
   if (name === 'saxe') return getStakedAXETokenImage();
 

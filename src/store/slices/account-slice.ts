@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { BONDS, getAddresses } from '../../constants';
-import { AxeTokenContract, StakedAxeContract, USDCContract, StakingContract } from '../../abi/';
+import { AxeTokenContract, StakedAxeContract, DAIContract, StakingContract } from '../../abi/';
 import { contractForBond, contractForReserve, setAll } from '../../helpers';
 
 import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
@@ -31,7 +31,7 @@ interface IUserBindDetails {
 
 export interface IAccount {
   balances: {
-    usdc: string;
+    dai: string;
     sAxe: string;
     axe: string;
   };
@@ -69,13 +69,13 @@ export const loadAccountDetails = createAsyncThunk(
   async ({ networkID, provider, address }: IAccountProps): Promise<IAccount> => {
     const addresses = getAddresses(networkID);
 
-    const usdcContract = new ethers.Contract(addresses.USDC_ADDRESS, USDCContract, provider);
+    const daiContract = new ethers.Contract(addresses.DAI_ADDRESS, DAIContract, provider);
     const axeContract = new ethers.Contract(addresses.AXE_ADDRESS, AxeTokenContract, provider);
     const sAxeContract = new ethers.Contract(addresses.sAXE_ADDRESS, StakedAxeContract, provider);
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
 
-    const [usdcBalance, axeBalance, stakeAllowance, sAxeBalance, unstakeAllowance, warmup, epoch] = await Promise.all([
-      usdcContract.balanceOf(address),
+    const [daiBalance, axeBalance, stakeAllowance, sAxeBalance, unstakeAllowance, warmup, epoch] = await Promise.all([
+      daiContract.balanceOf(address),
       axeContract.balanceOf(address),
       axeContract.allowance(address, addresses.STAKING_HELPER_ADDRESS),
       sAxeContract.balanceOf(address),
@@ -88,7 +88,7 @@ export const loadAccountDetails = createAsyncThunk(
       balances: {
         sAxe: ethers.utils.formatUnits(sAxeBalance, 'gwei'),
         axe: ethers.utils.formatUnits(axeBalance, 'gwei'),
-        usdc: ethers.utils.formatEther(usdcBalance),
+        dai: ethers.utils.formatEther(daiBalance),
       },
       staking: {
         axeStake: +stakeAllowance,
@@ -126,14 +126,14 @@ export const calculateUserBondDetails = createAsyncThunk(
     let allowance,
       balance = '0';
 
-    if (bond === BONDS.usdc) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.USDC);
+    if (bond === BONDS.dai) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatEther(balance);
     }
 
-    if (bond === BONDS.usdc_axe) {
-      allowance = await reserveContract.allowance(address, addresses.BONDS.USDC_AXE);
+    if (bond === BONDS.dai_axe) {
+      allowance = await reserveContract.allowance(address, addresses.BONDS.DAI_AXE);
       balance = await reserveContract.balanceOf(address);
       balance = ethers.utils.formatUnits(balance, 'ether');
     }

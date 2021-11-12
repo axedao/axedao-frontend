@@ -1,4 +1,4 @@
 export const BONDS = {
-  usdc: 'usdc',
-  usdc_axe: 'usdc_axe_lp',
+  dai: 'dai',
+  dai_axe: 'dai_axe_lp',
 };

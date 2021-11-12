@@ -13,5 +13,5 @@ export const RPCURL = {
   RINKEBY: 'https://rinkeby.infura.io/v3/d98b322397ca41ee86d071d157435ba1',
 };
 
-// export const DEFAULT_NETWORK = Networks.MAINNET;
-export const DEFAULT_NETWORK = Networks.RINKEBY;
+export const DEFAULT_NETWORK = Networks.MAINNET;
+// export const DEFAULT_NETWORK = Networks.RINKEBY;

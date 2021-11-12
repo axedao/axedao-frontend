@@ -1,6 +1,6 @@
 import { ethers } from 'ethers';
 import { getAddresses } from '../../constants';
-import { IDOContract, USDCContract } from '../../abi';
+import { IDOContract, DAIContract } from '../../abi';
 import { setAll } from '../../helpers';
 import { createSlice, createSelector, createAsyncThunk } from '@reduxjs/toolkit';
 import { JsonRpcProvider } from '@ethersproject/providers';
@@ -11,7 +11,7 @@ const initialState = {
 
 export interface IDOState {
   loading: boolean;
-  walletUsdcBalance: string;
+  walletDaiBalance: string;
   allowance: string;
   allotment: string;
 }
@@ -27,15 +27,15 @@ export const loadIDODetails = createAsyncThunk(
   //@ts-ignore
   async ({ wallet, networkID, provider }: loadIDODetailsPayload) => {
     const addresses = getAddresses(networkID);
-    const usdc = new ethers.Contract(addresses.USDC_ADDRESS, USDCContract, provider);
+    const dai = new ethers.Contract(addresses.DAI_ADDRESS, DAIContract, provider);
     const ido = new ethers.Contract(addresses.IDO, IDOContract, provider);
 
-    const walletUsdcBalance = ethers.utils.formatEther(await usdc.balanceOf(wallet));
-    const allowance = ethers.utils.formatEther(await usdc.allowance(wallet, ido.address));
+    const walletDaiBalance = ethers.utils.formatEther(await dai.balanceOf(wallet));
+    const allowance = ethers.utils.formatEther(await dai.allowance(wallet, ido.address));
     const allotment = ethers.utils.formatUnits(await ido.getAllotmentPerBuyer(), 9);
 
     return {
-      walletUsdcBalance,
+      walletDaiBalance,
       allowance,
       allotment,
     };

@@ -79,7 +79,7 @@ function AxeMenu() {
                       </Button>
                     </Link>
                     <Link
-                      href={'https://www.dextools.io/app/ether/pair-explorer/' + RESERVES.USDC_AXE}
+                      href={'https://www.dextools.io/app/ether/pair-explorer/' + RESERVES.DAI_AXE}
                       target="_blank"
                       rel="noreferrer"
                     >

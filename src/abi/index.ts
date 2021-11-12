@@ -1,11 +1,11 @@
 export { abi as OtterBond } from './AxeBondDepository.json';
 
-export { abi as UsdcContract } from './reserves/UsdcContract.json';
-export { abi as AxeUsdcContract } from './reserves/AxeUsdcContract.json';
+export { abi as DaiContract } from './reserves/DaiContract.json';
+export { abi as AxeDaiContract } from './reserves/AxeDaiContract.json';
 
 export { abi as StakedAxeContract } from './tokens/StakedAxeTokenContract.json';
 export { abi as AxeTokenContract } from './tokens/AxeTokenContract.json';
-export { abi as USDCContract } from './tokens/USDCContract.json';
+export { abi as DAIContract } from './tokens/DaiContract.json';
 
 export { abi as BondingCalcContract } from './BondingCalcContract.json';
 export { abi as StakingContract } from './StakingContract.json';

@@ -51,7 +51,7 @@ export const loadAppDetails = createAsyncThunk(
   'app/loadAppDetails',
   //@ts-ignore
   async ({ networkID, provider }: ILoadAppDetails) => {
-    const usdcPrice = await getTokenPrice('USDC');
+    const daiPrice = await getTokenPrice('DAI');
 
     const addresses = getAddresses(networkID);
     const currentBlock = await provider.getBlockNumber();
@@ -67,12 +67,12 @@ export const loadAppDetails = createAsyncThunk(
     );
     const stakingContract = new ethers.Contract(addresses.STAKING_ADDRESS, StakingContract, provider);
 
-    let token = contractForReserve(BONDS.usdc, networkID, provider);
-    let token1 = contractForReserve(BONDS.usdc_axe, networkID, provider);
-    // const usdcAmount = (await token.balanceOf(addresses.TREASURY_ADDRESS)) / 1e18;
-    // const usdcAxeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
+    let token = contractForReserve(BONDS.dai, networkID, provider);
+    let token1 = contractForReserve(BONDS.dai_axe, networkID, provider);
+    // const daiAmount = (await token.balanceOf(addresses.TREASURY_ADDRESS)) / 1e18;
+    // const daiAxeAmount = await token.balanceOf(addresses.TREASURY_ADDRESS);
 
-    const [usdcAmount, usdcAxeAmount] = await Promise.all([
+    const [daiAmount, daiAxeAmount] = await Promise.all([
       (await token.balanceOf(addresses.TREASURY_ADDRESS)) / 1e18,
       token1.balanceOf(addresses.TREASURY_ADDRESS)
     ])
@@ -89,9 +89,9 @@ export const loadAppDetails = createAsyncThunk(
       currentIndex,
       rawMarketPrice
     ] = await Promise.all([
-      bondCalculator.valuation(addressForAsset(BONDS.usdc_axe, networkID), usdcAxeAmount),
-      bondCalculator.markdown(addressForAsset(BONDS.usdc_axe, networkID)),
-      getDiscountedPairUSD(usdcAxeAmount, networkID, provider),
+      bondCalculator.valuation(addressForAsset(BONDS.dai_axe, networkID), daiAxeAmount),
+      bondCalculator.markdown(addressForAsset(BONDS.dai_axe, networkID)),
+      getDiscountedPairUSD(daiAxeAmount, networkID, provider),
       stakingContract.contractBalance(),
       (await axeCirculatingSupply.AXECirculatingSupply()) / 1e9,
       (await axeContract.totalSupply()) / 1e9,
@@ -101,14 +101,14 @@ export const loadAppDetails = createAsyncThunk(
       getMarketPrice(networkID, provider)
     ])
 
-    // const valuation = await bondCalculator.valuation(addressForAsset(BONDS.usdc_axe, networkID), usdcAxeAmount);
-    // const markdown = await bondCalculator.markdown(addressForAsset(BONDS.usdc_axe, networkID));
-    // const [rfvLPValue, pol] = await getDiscountedPairUSD(usdcAxeAmount, networkID, provider);
+    // const valuation = await bondCalculator.valuation(addressForAsset(BONDS.dai_axe, networkID), daiAxeAmount);
+    // const markdown = await bondCalculator.markdown(addressForAsset(BONDS.dai_axe, networkID));
+    // const [rfvLPValue, pol] = await getDiscountedPairUSD(daiAxeAmount, networkID, provider);
 
-    const usdcAxeUSD = (valuation / 1e9) * (markdown / 1e18);
+    const daiAxeUSD = (valuation / 1e9) * (markdown / 1e18);
 
-    const treasuryBalance = usdcAmount + usdcAxeUSD;
-    const treasuryRiskFreeValue = usdcAmount + rfvLPValue;
+    const treasuryBalance = daiAmount + daiAxeUSD;
+    const treasuryRiskFreeValue = daiAmount + rfvLPValue;
 
     // const stakingBalance = await stakingContract.contractBalance();
     // const circSupply = (await axeCirculatingSupply.AXECirculatingSupply()) / 1e9;
@@ -130,7 +130,7 @@ export const loadAppDetails = createAsyncThunk(
 
     // const rawMarketPrice = await getMarketPrice(networkID, provider);
     
-    const marketPrice = Number(((rawMarketPrice.toNumber() / 1e9) * usdcPrice).toFixed(2));
+    const marketPrice = Number(((rawMarketPrice.toNumber() / 1e9) * daiPrice).toFixed(2));
     const stakingTVL = (stakingBalance * marketPrice) / 1e9;
     const marketCap = circSupply * marketPrice;
 
@@ -164,7 +164,7 @@ async function getDiscountedPairUSD(
   networkID: number,
   provider: JsonRpcProvider,
 ): Promise<[number, number]> {
-  const pair = contractForReserve(BONDS.usdc_axe, networkID, provider);
+  const pair = contractForReserve(BONDS.dai_axe, networkID, provider);
   // const total_lp = await pair.totalSupply();
   // const reserves = await pair.getReserves();
 

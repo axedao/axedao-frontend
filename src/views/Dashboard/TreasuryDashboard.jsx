@@ -91,7 +91,7 @@ function TreasuryDashboard() {
           <Paper className="ohm-card">
            <div className="hero">
               <div>
-                <h3>Wen (3,3) becomes ({String.fromCodePoint(0x1FA93)}, {String.fromCodePoint(0x1FA93)})</h3>
+                <h3>Wen (3,3) becomes ({String.fromCodePoint(0x1fa93)}, {String.fromCodePoint(0x1fa93)})</h3>
                 <h1>Welcome to <span className="mark-gradient-text">AxeDAO</span></h1>
                 <p>The Decentralized Reserve Currency</p>
               </div>
@@ -136,7 +136,10 @@ function TreasuryDashboard() {
                   <InfoTooltip message={tooltipInfoMessages.apy} />
                 </Typography>
                 <Typography variant="h4">
-                  {stakingAPY ? percentFormatter.format(stakingAPY) : <Skeleton type="text" />}
+                  {
+                    // stakingAPY ? percentFormatter.format(stakingAPY) : <Skeleton type="text" />
+                    "Coming Soon"
+                  }
                 </Typography>
               </Box>
 

@@ -8,6 +8,6 @@ export const contractForBond = (
   provider: ethers.Signer | ethers.providers.Provider,
 ): ethers.Contract => {
   const addresses = getAddresses(networkID);
-  const contractAddress = bond === BONDS.usdc ? addresses.BONDS.USDC : addresses.BONDS.USDC_AXE;
+  const contractAddress = bond === BONDS.dai ? addresses.BONDS.DAI : addresses.BONDS.DAI_AXE;
   return new ethers.Contract(contractAddress, OtterBond, provider);
 };
